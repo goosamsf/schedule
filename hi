@@ -1,0 +1,67 @@
+Youngjun Park
+ypark26@calpoly.edu | 707.708.1224  | linkedn.com/in/youngjun0720
+EDUCATION
+California Polytechnic State University, San Luis Obispo (Cal Poly)
+Bachelor of Science Degree in Computer Science					     Expected June 2024
+GPA: 3.475
+
+Relevant Coursework: 
+System Programming
+Introduction to Computer Security
+Cryptography Engineering
+Introduction to Operating  System
+Design and Analysis of Algorithm
+Introduction to Computer Networks
+
+
+SKILLS
+Programming Languages
+C(++)
+Go
+Python
+Java
+Bash
+
+
+ Software Tools
+ Vim
+ Tmux
+ Git
+ Wireshark
+ fzf
+ 
+ 
+ 
+ 
+ PROGRAMMING PROJECTS					      
+ cheat, Command line utility that provides user with extremely simple command manual (Bash)
+ Created a Bash Script that prints the specific part of the file.
+ Exported it in PATH and works as a simple lookup utility. 
+ 
+ dt, Daily terminal, command line utility that automatically manages daily and weekly planner (Bash)
+ It’s a shell script that automates the creation and deletion of daily planner files.
+ Making personal frequent action automated. 
+ 
+ dds,  Canvas Website due date scraper (Go)
+ Canvas main page provides the summary of to do things.
+ Write a web scraper program using the Colly open source library.
+ Fast & Efficient specific information retrieval from the web.
+ 
+	Schedule, Implementing Round-Robin Scheduler ( C )
+	Programming using fundamental operating system concept : process and signal
+	
+	fm, Command line User Interface file manager  ( C )
+	Ncurse programming, Compromise between GUI and CLI.
+	Programming with interprocess communication
+	Easily navigate through Unix’s file structure.
+	 Currently developing to add features like mv, cp
+	 
+	 
+	 WORK EXPERIENCE
+	 As a communication/intelligence specialist, had various experience and knowledge of field communication			        
+	 South Korea Army : 13th Special Mission Brigade(2013 - 2015)
+	 Specialized in FM/AM communication between command post and operation team
+		
+		South Korea Army : 707th Special Mission Battalion(2015- 2017) 
+		Specialized in directioning military aircraft engaged in close air support.
+		)))))))))

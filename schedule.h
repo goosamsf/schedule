@@ -34,6 +34,9 @@ pnode *createNode(char* prog, char** args, pid_t pid){
 
 void push_back(pnode**head, pnode**tail, pid_t pid){
 	pnode *firstnode = *head;
+	if(!firstnode->next){
+		return;
+	}
 	pnode *nextnode = firstnode->next;
 	if(firstnode->args){
 		free(firstnode->args);
@@ -129,7 +132,7 @@ void start_timer(long quan){
 	tbuf.it_interval.tv_sec = 0; 
 	tbuf.it_interval.tv_usec = 0;
 	if(quan >= 1000){
-		tbuf.it_value.tv_sec = quan/1000;
+		tbuf.it_value.tv_sec = quan/1000; 
 		tbuf.it_value.tv_usec = 0;
 	}else{
 		tbuf.it_value.tv_sec = 0;

@@ -3,12 +3,14 @@
 static void print_usage(char *prog){
 	fprintf(stderr,"usage: %s quantum [prog1 [args] [: prog2 [args] [: prog3] [args] [: ...]]]\n",prog);
 }
+
 int main(int argc, char* argv[]){
 	if(argc < 3){
 		fprintf(stderr, "Invalid Arguments\n");
 		print_usage(argv[0]);
 		exit(1);
 	}
+
 	pnode* head = NULL;
 	pnode* tail = NULL;
 	pnode* node = NULL;
@@ -19,13 +21,13 @@ int main(int argc, char* argv[]){
 	int i,j=2;
 	int numofprog = 0;
 	long quantum = strtol(argv[1], &end, 10);
+
 	if(*end){
 		fprintf(stderr, "Invalid Quantum\n");
 		exit(1);
 	}
 
  /*Install the handler*/	
-
 	struct sigaction sa;
 	sigset_t empty;
 	sigemptyset(&empty);
@@ -41,7 +43,11 @@ int main(int argc, char* argv[]){
 	//Parse command line and put all of them into queue
 	for(i=2; i < argc; i++) {
 		if(!strcmp(argv[i], ":")){
-			prog = argv[j];
+			if(!strcmp(argv[j],"two")){
+				prog = "./two";
+			}else{
+				prog = argv[j];
+			}
 			nextargs= extract_next_prog(argv, &j, i , i-j+1);
 			node = createNode(prog,nextargs, 0);
 			enqueue(&head,&tail, node);
@@ -49,7 +55,11 @@ int main(int argc, char* argv[]){
 			continue;
 		}
 		if(i == argc-1){
-			prog = argv[j];
+			if(!strcmp(argv[j],"two")){
+				prog = "./two";
+			}else{
+				prog = argv[j];
+			}
 			nextargs = extract_next_prog(argv, &j, i+1, i-j+2);
 			node = createNode(prog,nextargs, 0);
 			enqueue(&head,&tail, node);
@@ -67,6 +77,7 @@ int main(int argc, char* argv[]){
 				raise(SIGSTOP);
 				execvp(curr->prog, curr->args);
 			}
+			usleep(100);
 			node = createNode(NULL, NULL, pid);
 			enqueue(&head, &tail,node);
 			dequeue(&head);
@@ -77,32 +88,23 @@ int main(int argc, char* argv[]){
 		//sleep(100);
 		start_timer(quantum);
 		kill(head->pid,SIGCONT);
+
 		while((wpid = waitpid(head->pid,&status, WUNTRACED)) == -1){
 			perror("waitpid");
 			exit(-1);
 		}
-
 		stop_timer();
+		
 		if(WIFEXITED(status)){
 			//Terminated;
 			dequeue(&head);
 		}
-
-		if(WIFSTOPPED(status)){
+		else if(WIFSTOPPED(status)){
 			//Stopped
 			push_back(&head, &tail, head->pid);
 		}
-		//continue process in head.
-		//get waitpid
-		//if terminated?
-		//	dequeue
-		//if stoppe1d?
-		//	push_back
-
-		
+			
 	}
-	//sleep(10);
-		
 	return 0;
 }
 

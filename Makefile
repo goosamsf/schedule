@@ -1,9 +1,11 @@
 CC = gcc
-CFLAGS = -g -Wall -Werror
+CFLAGS = -g -Wall 
 
 all: schedule 
 
 PROGNAME: schedule 
 			$(CC) $(CFLAGS) -o $@ schedule.c 
 			
-clean:
+run: 
+	PATH=$(PWD):$$PATH; ./schedule $(ARGS)
+	
