@@ -131,13 +131,12 @@ void start_timer(long quan){
 	struct itimerval tbuf;
 	tbuf.it_interval.tv_sec = 0; 
 	tbuf.it_interval.tv_usec = 0;
-	if(quan >= 1000){
-		tbuf.it_value.tv_sec = quan/1000; 
-		tbuf.it_value.tv_usec = 0;
-	}else{
-		tbuf.it_value.tv_sec = 0;
-		tbuf.it_value.tv_usec = quan*1000;  
-	}
+	long myquantum = quan/1000;	
+	long myquantum_remainder = (quan % 1000) * 1000;
+	
+	tbuf.it_value.tv_sec = myquantum; 
+	tbuf.it_value.tv_usec = myquantum_remainder;  
+
 	if(setitimer(ITIMER_REAL, &tbuf, NULL) == -1){
 		perror("setitimer");
 		exit(-1);

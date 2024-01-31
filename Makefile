@@ -5,7 +5,8 @@ all: schedule
 
 PROGNAME: schedule 
 			$(CC) $(CFLAGS) -o $@ schedule.c 
-			
+ARGS = $1			
+
 run: 
-	PATH=$(PWD):$$PATH; ./schedule $(ARGS)
+	$(shell echo $ARGS)
 	
