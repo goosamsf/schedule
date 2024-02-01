@@ -1,8 +1,7 @@
 CC = gcc
-CFLAGS = -g -Wall 
+CFLAGS = -g -Wall -Werror 
 
-all: schedule 
-
+all : schedule
 PROGNAME: schedule 
 			$(CC) $(CFLAGS) -o $@ schedule.c 
 ARGS = $1			
